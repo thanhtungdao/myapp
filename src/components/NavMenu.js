@@ -1,0 +1,70 @@
+import React, { Component } from 'react';
+import {
+    Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink, Nav, UncontrolledDropdown,
+    DropdownToggle,
+    DropdownMenu,
+    DropdownItem
+} from 'reactstrap';
+import { Link } from 'react-router-dom';
+import { withAuthenticator, Authenticator } from 'aws-amplify-react';
+
+import './NavMenu.css';
+
+export default class NavMenu extends Component {
+    static displayName = NavMenu.name;
+
+    constructor(props) {
+        super(props);
+
+        this.toggleNavbar = this.toggleNavbar.bind(this);
+        this.state = {
+            collapsed: true
+        };
+    }
+
+    toggleNavbar() {
+        this.setState({
+            collapsed: !this.state.collapsed
+        });
+    }
+
+    render() {
+        return (
+            <header>
+                <Navbar className="navbar-expand-md navbar-toggleable-md ng-white border-bottom box-shadow mb-3" light>
+                    <Container>
+                        <NavbarBrand tag={Link} className="text-light" to="/">Olympics Streaming Service</NavbarBrand><UncontrolledDropdown size="md" direction="right">
+                            <DropdownToggle nav caret className="text-light">
+                                Channels
+    </DropdownToggle>
+                            <DropdownMenu left>
+                                <DropdownItem>
+                                    <NavItem>
+                                        <NavLink tag={Link} className="text-dark" to="/video-on-demand">Video On Demand</NavLink>
+                                    </NavItem>
+                                </DropdownItem>
+                                <DropdownItem>
+                                    <NavItem>
+                                        <NavLink tag={Link} className="text-dark" to="/livestream">Live Streaming</NavLink>
+                                    </NavItem>
+                                </DropdownItem>
+                            </DropdownMenu>
+                        </UncontrolledDropdown>
+
+                        <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
+                        <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
+                            <ul className="navbar-nav flex-grow">
+                                <NavItem>
+                                    <NavLink tag={Link} className="text-light" to="/">Home</NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavLink tag={Link} className="text-light" to="/login">Login</NavLink>
+                                </NavItem>
+                            </ul>
+                        </Collapse>
+                    </Container>
+                </Navbar>
+            </header>
+        );
+    }
+}
