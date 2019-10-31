@@ -10,10 +10,7 @@ export class Register extends React.Component {
     }
 
     render() {
-        return (<Authenticator hideDefault={true} authState='signUp'> 
-            <SignUp />
-            <SignIn />
-            <Greetings />
+        return (<Authenticator authState='signUp'> 
         </Authenticator>
         );
     }

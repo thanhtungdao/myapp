@@ -6,7 +6,6 @@ import {
     DropdownItem
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import { withAuthenticator, Authenticator } from 'aws-amplify-react';
 
 import './NavMenu.css';
 
